@@ -1,0 +1,7 @@
+numpy
+tqdm
+termcolor
+opencv-python
+shapely
+pycocotools
+tensorboardX
