@@ -72,7 +72,7 @@ class Evolution(nn.Module):
             init = self.prepare_testing_init(output)
             img_init_polys = self.prepare_testing_evolve(init, cnn_feature.size(2), cnn_feature.size(3))
             py = self.evolve_poly(self.evolve_gcn, cnn_feature, img_init_polys, init['can_init_polys'], init['py_ind'],
-                                  ignore=ignore[0], stride=1.)
+                                  ignore=ignore[0], stride=self.evolve_stride)
             pys = [py, ]
             for i in range(self.iter):
                 py = py / self.ro
