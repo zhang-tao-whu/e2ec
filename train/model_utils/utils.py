@@ -13,7 +13,7 @@ def load_model(net, optim, scheduler, recorder, model_path):
     print('load model: {}'.format(model_path))
     pretrained_model = torch.load(model_path, map_location={'cuda:0': 'cpu', 'cuda:1': 'cpu',
                                                             'cuda:2': 'cpu', 'cuda:3': 'cpu'})
-    net.load_state_dict(pretrained_model, strict=strict)
+    net.load_state_dict(pretrained_model['net'], strict=strict)
     optim.load_state_dict(pretrained_model['optim'])
     scheduler.load_state_dict(pretrained_model['scheduler'])
     recorder.load_state_dict(pretrained_model['recorder'])
