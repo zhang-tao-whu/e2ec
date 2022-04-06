@@ -41,7 +41,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ### Testing on COCO
 
-1. Download the pretrained model [here](http:\\gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1EgEmSFXLVe7dKpqeBG9G3g)(password is `e2ec`).
+1. Download the pretrained model [here](http://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1EgEmSFXLVe7dKpqeBG9G3g)(password is `e2ec`).
 
 2. Prepared the COCO dataset according to the [INSTALL.md](INSTALL.md).
 
