@@ -41,7 +41,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ### Testing on COCO
 
-1. Download the pretrained model [here](http://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1EgEmSFXLVe7dKpqeBG9G3g)(password is `e2ec`).
+1. Download the pretrained model [here](https://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1EgEmSFXLVe7dKpqeBG9G3g)(password is `e2ec`).
 
 2. Prepared the COCO dataset according to the [INSTALL.md](INSTALL.md).
 
@@ -62,7 +62,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ### Testing on SBD
 
-1. Download the pretrained model [here](gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1o4gkzs7H_Wyf2Iyoj3xYOA )(password is `e2ec`).
+1. Download the pretrained model [here](https://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1o4gkzs7H_Wyf2Iyoj3xYOA )(password is `e2ec`).
 
 2. Prepared the SBD dataset according to the [INSTALL.md](INSTALL.md).
 
@@ -81,7 +81,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ### Testing on KINS
 
-1. Download the pretrained model [here](gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1vvXat_jH9d1D5E61ULmYAg)(password is `e2ec`).
+1. Download the pretrained model [here](https://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1vvXat_jH9d1D5E61ULmYAg)(password is `e2ec`).
 
 2. Prepared the KINS dataset according to the [INSTALL.md](INSTALL.md).
 
@@ -102,7 +102,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ### Testing on Cityscapes 
 
-1. Download the pretrained model [here](gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1_qrNoviwWdcSDK8LjWDUdA)(password is `e2ec`).
+1. Download the pretrained model [here](https://gpcv.whu.edu.cn/member/ZhangTao/model.zip) or [Baiduyun](https://pan.baidu.com/s/1_qrNoviwWdcSDK8LjWDUdA)(password is `e2ec`).
 
 2. Prepared the KINS dataset according to the [INSTALL.md](INSTALL.md).
 
@@ -146,7 +146,7 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ## Visualization
 
-1. Download the [pretrained model](gpcv.whu.edu.cn/member/ZhangTao/model.zip).
+1. Download the [pretrained model](https://gpcv.whu.edu.cn/member/ZhangTao/model.zip).
 
 2. Visualize:
 
