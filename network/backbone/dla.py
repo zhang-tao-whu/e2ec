@@ -351,6 +351,8 @@ class DeformConv(nn.Module):
         if use_dcn:
             from .dcn_v2 import DCN
             self.conv = DCN(chi, cho, kernel_size=(3, 3), stride=1, padding=1, dilation=1, deformable_groups=1)
+            #from mmcv.ops import ModulatedDeformConv2dPack as DCN
+            #self.conv = DCN(chi, cho, kernel_size=(3, 3), stride=1, padding=1, dilation=1, deform_groups=1)
         else:
             self.conv = nn.Conv2d(chi, cho, kernel_size=(3, 3), stride=1, padding=1, dilation=1)
 
