@@ -53,8 +53,8 @@ def load_network(net, model_dir, strict=True):
     pretrained_model = pretrained_model['net']
 
     net_weight = net.state_dict()
-    for key in net_weight.keys():
-        net_weight.update({key: pretrained_model[key]})
+    for key1, key2 in zip(net_weight.keys(), pretrained_model.keys()):
+        net_weight.update({key1: pretrained_model[key2]})
 
     net.load_state_dict(net_weight, strict=strict)
     return epoch
