@@ -27,7 +27,7 @@ Maybe you will encounter some build errors. You can choose a plan :
 
 1.  You can look for another implementation of DCN-V2 and compiled successfully.
 2.  You can set `cfg.model.use_dcn` as `False`. This may result in a slight drop in accuracy.
-3.  You can install **mmcv**, and replace  352 line of `network/backbone/dla.py` as `from mmcv.ops import DeformConv2dPack as DCN`, replace the `deformable_groups` in 353 line as `deform_groups`. But you may not be able to successfully load the pretrained model.
+3.  You can install **mmcv**, and replace  352 line of `network/backbone/dla.py` as `from mmcv.ops import ModulatedDeformConv2dPack as DCN`, replace the `deformable_groups` in 353 line as `deform_groups`.
 
 ### Set up datasets
 
