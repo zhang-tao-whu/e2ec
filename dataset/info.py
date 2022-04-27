@@ -55,22 +55,10 @@ class DatasetInfo(object):
             'anno_dir': 'data/cityscapes/annotations/val',
             'split': 'val'
         },
-        'cityscapesCoco_train': {
-            'name': 'cityscapesCoco',
-            'image_dir': 'data/cityscapes/leftImg8bit',
-            'anno_dir': ('data/cityscapes/annotations/train', 'data/cityscapes/annotations/train_val'),
-            'split': 'train'
-        },
         'cityscapesCoco_val': {
             'name': 'cityscapesCoco',
             'image_dir': 'data/cityscapes/leftImg8bit/val',
             'anno_dir': 'data/cityscapes/coco_ann/instance_val.json',
-            'split': 'val'
-        },
-        'cityscapesCoco_gen': {
-            'name': 'cityscapesCoco',
-            'image_dir': 'data/SYNTHIA/images',
-            'anno_dir': 'data/SYNTHIA/annotations/instancesonly_train.json',
             'split': 'val'
         },
         'cityscapes_test': {
