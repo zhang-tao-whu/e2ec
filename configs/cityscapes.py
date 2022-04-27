@@ -6,7 +6,7 @@ data.input_w, input_h = (800, 800)
 
 model.heads['ct_hm'] = 8
 
-train.dataset = 'cityscapesCoco_train'
+train.dataset = 'cityscapes_train'
 train.optimizer['milestones'] = [80, 120, 150, ]
 train.batch_size = 32
 train.num_workers = 32
