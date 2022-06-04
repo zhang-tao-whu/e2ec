@@ -81,7 +81,7 @@ class Dataset(data.Dataset):
         self.split = split
         self.anns = np.array(read_dataset(anno_file)[:])
         self.anns = self.anns[:500] if split == 'mini' else self.anns
-        self.json_category_id_to_contiguous_id = JSON_DICT
+        self.json_category_id_to_continuous_id = JSON_DICT
         self.d = Douglas()
 
     def process_info(self, fname, data_root):
@@ -99,8 +99,8 @@ class Dataset(data.Dataset):
 
     def read_original_data(self, anno, path):
         img = cv2.imread(path)
-        instance_polys = [np.array(obj['components']) for obj in anno]
-        cls_ids = [self.json_category_id_to_contiguous_id[obj['label']] for obj in anno]
+        instance_polys = [[np.array(comp['poly']) for comp in obj['components']] for obj in anno]
+        cls_ids = [self.json_category_id_to_continuous_id[obj['label']] for obj in anno]
         return img, instance_polys, cls_ids
 
     def transform_original_data(self, instance_polys, flipped, width, trans_output, inp_out_hw):
