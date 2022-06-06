@@ -26,13 +26,18 @@ class NetworkWrapper(nn.Module):
         loss = 0.
 
         keyPointsMask = batch['keypoints_mask'][batch['ct_01']]
-
+        
         ct_loss = self.ct_crit(sigmoid(output['ct_hm']), batch['ct_hm'])
         scalar_stats.update({'ct_loss': ct_loss})
         loss += ct_loss
 
-        init_py_loss = self.py_crit(output['poly_init'], output['img_gt_polys'])
-        coarse_py_loss = self.py_crit(output['poly_coarse'], output['img_gt_polys'])
+        num_polys = len(output['poly_init'])
+        if num_polys == 0:
+            init_py_loss = torch.sum(output['poly_init']) * 0.
+            init_py_loss = torch.sum(output['poly_coarse']) * 0.
+        else:
+            init_py_loss = self.py_crit(output['poly_init'], output['img_gt_polys'])
+            coarse_py_loss = self.py_crit(output['poly_coarse'], output['img_gt_polys'])
         scalar_stats.update({'init_py_loss': init_py_loss})
         scalar_stats.update({'coarse_py_loss': coarse_py_loss})
         loss += init_py_loss * self.weight_dict['init']
@@ -41,16 +46,23 @@ class NetworkWrapper(nn.Module):
         py_loss = 0
         n = len(output['py_pred']) - 1 if self.with_dml else len(output['py_pred'])
         for i in range(n):
-            part_py_loss = self.py_crit(output['py_pred'][i], output['img_gt_polys'])
+            if num_polys == 0:
+                part_py_loss = torch.sum(output['py_pred'][i]) * 0.0
+            else:
+                part_py_loss = self.py_crit(output['py_pred'][i], output['img_gt_polys'])
             py_loss += part_py_loss / len(output['py_pred'])
             scalar_stats.update({'py_loss_{}'.format(i): part_py_loss})
         loss += py_loss * self.weight_dict['evolve']
 
-        if self.with_dml and epoch >= self.start_epoch:
+        if self.with_dml and epoch >= self.start_epoch and num_polys != 0:
             dm_loss = self.dml_crit(output['py_pred'][-2],
                                     output['py_pred'][-1],
                                     output['img_gt_polys'],
                                     keyPointsMask)
+            scalar_stats.update({'end_set_loss': dm_loss})
+            loss += dm_loss / len(output['py_pred']) * self.weight_dict['evolve']
+        else:
+            dm_loss = torch.sum(output['py_pred'][-1]) * 0.0
             scalar_stats.update({'end_set_loss': dm_loss})
             loss += dm_loss / len(output['py_pred']) * self.weight_dict['evolve']
 
