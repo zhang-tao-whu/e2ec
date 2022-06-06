@@ -49,12 +49,13 @@ class DMLoss(nn.Module):
         super(DMLoss, self).__init__()
 
     def interpolation(self, poly, time=10):
+        ori_points_num = poly.size(1)
         poly_roll =torch.roll(poly, shifts=1, dims=1)
-        poly_ = poly.unsqueeze(3).repeat(1, 1, 1, 10)
+        poly_ = poly.unsqueeze(3).repeat(1, 1, 1, time)
         poly_roll = poly_roll.unsqueeze(3).repeat(1, 1, 1, time)
         step = torch.arange(0, time, dtype=torch.float32).cuda() / time
         poly_interpolation = poly_ * step + poly_roll * (1. - step)
-        poly_interpolation = poly_interpolation.permute(0, 1, 3, 2).reshape(poly_interpolation.size(0), -1, 2)
+        poly_interpolation = poly_interpolation.permute(0, 1, 3, 2).reshape(poly_interpolation.size(0), ori_points_num * time, 2)
         return poly_interpolation
 
     def compute_distance(self, pred_poly, gt_poly):
