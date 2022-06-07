@@ -34,7 +34,7 @@ class NetworkWrapper(nn.Module):
         num_polys = len(output['poly_init'])
         if num_polys == 0:
             init_py_loss = torch.sum(output['poly_init']) * 0.
-            init_py_loss = torch.sum(output['poly_coarse']) * 0.
+            coarse_py_loss = torch.sum(output['poly_coarse']) * 0.
         else:
             init_py_loss = self.py_crit(output['poly_init'], output['img_gt_polys'])
             coarse_py_loss = self.py_crit(output['poly_coarse'], output['img_gt_polys'])
