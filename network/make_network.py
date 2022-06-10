@@ -18,7 +18,7 @@ class Network(nn.Module):
                           down_ratio=down_ratio,
                           final_kernel=1,
                           last_level=5,
-                          head_conv=head_conv)
+                          head_conv=head_conv, use_dcn=cfg.model.use_dcn)
         self.train_decoder = Decode(num_point=cfg.commen.points_per_poly, init_stride=cfg.model.init_stride,
                                     coarse_stride=cfg.model.coarse_stride, down_sample=cfg.commen.down_ratio,
                                     min_ct_score=cfg.test.ct_score)
