@@ -176,7 +176,25 @@ The accuracy and inference speed of the contours at different stages on coco val
 
 ## Training
 
-We have only released the code for single GPU training, multi GPU training with ddp will be released soon.
+We have released the code for multi GPU training with ddp.
+
+### Training with multi GPUS
+
+```
+CUDA_VISIBLE_DEVICES=${gpu_ids} python -m torch.distributed.launch \
+--nproc_per_node ${gpu_nums} \
+train_net_ddp.py \
+--config_file ${dataset} \
+--bs ${bs_per_gpu} \
+--gpus ${gpu_nums}
+# the example of training sbd dataset using 2 gpus
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch \
+--nproc_per_node 2 \
+train_net_ddp.py \
+--config_file sbd \
+--bs 12 \
+--gpus 2
+```
 
 ### Training on SBD
 
