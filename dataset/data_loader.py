@@ -3,9 +3,6 @@ import torch.utils.data
 from .collate_batch import collate_batch
 from .info import DatasetInfo
 
-torch.multiprocessing.set_sharing_strategy('file_system')
-
-
 def make_dataset(dataset_name, is_test, cfg):
     info = DatasetInfo.dataset_info[dataset_name]
     if is_test:
@@ -31,6 +28,9 @@ def make_data_sampler(dataset, shuffle):
         sampler = torch.utils.data.sampler.SequentialSampler(dataset)
     return sampler
 
+def make_ddp_data_sampler(dataset, shuffle):
+    sampler = torch.utils.data.distributed.DistributedSampler(dataset, shuffle=shuffle)
+    return sampler
 
 def make_batch_data_sampler(sampler, batch_size, drop_last):
     batch_sampler = torch.utils.data.sampler.BatchSampler(sampler, batch_size, drop_last)
@@ -98,4 +98,30 @@ def make_demo_loader(data_root=None, cfg=None):
         collate_fn=collator
     )
     return data_loader
+
+def make_ddp_train_loader(cfg):
+    batch_size = cfg.train.batch_size
+    shuffle = True
+    drop_last = False
+    dataset_name = cfg.train.dataset
+
+    dataset = make_dataset(dataset_name, is_test=False, cfg=cfg)
+    sampler = make_ddp_data_sampler(dataset, shuffle)
+    collator = collate_batch
+    data_loader = torch.utils.data.DataLoader(
+        dataset,
+        sampler=sampler,
+        batch_size=batch_size,
+        num_workers=batch_size,
+        collate_fn=collator,
+        pin_memory=False,
+        drop_last=drop_last
+    )
+    return data_loader
+
+def make_ddp_data_loader(is_train=True, is_distributed=False, cfg=None):
+    if is_train:
+        return make_ddp_train_loader(cfg), make_test_loader(cfg, is_distributed)
+    else:
+        return make_test_loader(cfg, is_distributed)
 

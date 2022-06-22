@@ -3,7 +3,7 @@ import os
 import torch.nn.functional
 from termcolor import colored
 
-def load_model(net, optim, scheduler, recorder, model_path):
+def load_model(net, optim, scheduler, recorder, model_path, map_location=None):
     strict = True
 
     if not os.path.exists(model_path):
@@ -11,8 +11,11 @@ def load_model(net, optim, scheduler, recorder, model_path):
         return 0
 
     print('load model: {}'.format(model_path))
-    pretrained_model = torch.load(model_path, map_location={'cuda:0': 'cpu', 'cuda:1': 'cpu',
-                                                            'cuda:2': 'cpu', 'cuda:3': 'cpu'})
+    if map_location is None:
+        pretrained_model = torch.load(model_path, map_location={'cuda:0': 'cpu', 'cuda:1': 'cpu',
+                                                                'cuda:2': 'cpu', 'cuda:3': 'cpu'})
+    else:
+        pretrained_model = torch.load(model_path, map_location=map_location)
     net.load_state_dict(pretrained_model['net'], strict=strict)
     optim.load_state_dict(pretrained_model['optim'])
     scheduler.load_state_dict(pretrained_model['scheduler'])
@@ -37,15 +40,18 @@ def save_weight(net, model_dir):
     }, os.path.join(model_dir, '{}.pth'.format('final')))
     return
 
-def load_network(net, model_dir, strict=True):
+def load_network(net, model_dir, strict=True, map_location=None):
 
     if not os.path.exists(model_dir):
         print(colored('WARNING: NO MODEL LOADED !!!', 'red'))
         return 0
 
     print('load model: {}'.format(model_dir))
-    pretrained_model = torch.load(model_dir, map_location={'cuda:0': 'cpu', 'cuda:1': 'cpu',
-                                                           'cuda:2': 'cpu', 'cuda:3': 'cpu'})
+    if map_location is None:
+        pretrained_model = torch.load(model_dir, map_location={'cuda:0': 'cpu', 'cuda:1': 'cpu',
+                                                               'cuda:2': 'cpu', 'cuda:3': 'cpu'})
+    else:
+        pretrained_model = torch.load(model_dir, map_location=map_location)
     if 'epoch' in pretrained_model.keys():
         epoch = pretrained_model['epoch'] + 1
     else:
@@ -53,8 +59,8 @@ def load_network(net, model_dir, strict=True):
     pretrained_model = pretrained_model['net']
 
     net_weight = net.state_dict()
-    for key1, key2 in zip(net_weight.keys(), pretrained_model.keys()):
-        net_weight.update({key1: pretrained_model[key2]})
+    for key in net_weight.keys():
+        net_weight.update({key: pretrained_model[key]})
 
     net.load_state_dict(net_weight, strict=strict)
     return epoch
