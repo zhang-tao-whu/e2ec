@@ -74,7 +74,7 @@ class Dataset(data.Dataset):
     def prepare_evolution(self, poly, img_gt_polys, can_gt_polys, keyPointsMask):
         img_gt_poly = uniformsample(poly, len(poly) * self.cfg.data.points_per_poly)
         idx = four_idx(img_gt_poly)
-        img_gt_poly = get_img_gt(img_gt_poly, idx)
+        img_gt_poly = get_img_gt(img_gt_poly, idx, t=self.cfg.data.points_per_poly)
         can_gt_poly = img_poly_to_can_poly(img_gt_poly)
         key_mask = self.get_keypoints_mask(img_gt_poly)
         keyPointsMask.append(key_mask)
