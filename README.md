@@ -262,10 +262,11 @@ If  the annotations is not in coco style:
 If you find this project helpful for your research, please consider citing using BibTeX below:
 
 ```
-@article{zhang2022e2ec,
+@inproceedings{zhang2022e2ec,
   title={E2EC: An End-to-End Contour-based Method for High-Quality High-Speed Instance Segmentation},
   author={Zhang, Tao and Wei, Shiqing and Ji, Shunping},
-  journal={arXiv preprint arXiv:2203.04074},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={4443--4452},
   year={2022}
 }
 ```
