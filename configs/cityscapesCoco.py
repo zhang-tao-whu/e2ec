@@ -2,7 +2,7 @@ from .base import commen, data, model, train, test
 import numpy as np
 
 data.scale = np.array([800, 800])
-data.input_w, input_h = (800, 800)
+data.input_w, data.input_h = (800, 800)
 
 model.heads['ct_hm'] = 8
 
