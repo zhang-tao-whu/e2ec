@@ -8,6 +8,14 @@
 
 Any questions or discussions are welcomed!
 
+## News
+
+An e2ec implementation using mmdetection is complete: [e2ec-mmdet](https://github.com/zhang-tao-whu/e2ec_mmdet/tree/master/configs/e2ec). The performance on coco-val is as follows:
+|    Detector    |  Agu | shcedule |  AP   | config |
+| :------------: |:----:| :-------:|:-----:|  :---: |
+|      FCOS      | w/o  |    1×    |  32.9 |  [config](https://github.com/zhang-tao-whu/e2ec_mmdet/blob/master/configs/e2ec/e2ec_fcos_center-normbbox-centeronreg-giou_r50_caffe_fpn_gn-head_dcn_feature64_FPNinit_p4evolve_bounddml_wholeInstance_reuniform_mspoints_attentive_normed-rela-coords_1x_coco.py) |
+|      FCOS      |  w   |    4×    |  35.1 |  [config](https://github.com/zhang-tao-whu/e2ec_mmdet/blob/master/configs/e2ec/e2ec_fcos_center-normbbox-centeronreg-giou_r50_caffe_fpn_gn-head_dcn_feature64_FPNinit_p4evolve_bounddml_wholeInstance_reuniform_mspoints_attentive_normed-rela-coords_mstrain_4x_coco.py) |
+
 ## Installation
 
 Please see [INSTALL.md](INSTALL.md).
