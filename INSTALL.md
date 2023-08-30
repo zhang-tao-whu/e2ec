@@ -35,7 +35,7 @@ Maybe you will encounter some build errors. You can choose a plan :
 
 1. Download the Cityscapes dataset (leftImg8bit\_trainvaltest.zip) from the official [website](https://www.cityscapes-dataset.com/downloads/).
 
-2. Download the processed annotation file [cityscapes_anno.tar.gz](https://zjueducn-my.sharepoint.com/:u:/g/personal/pengsida_zju_edu_cn/EcaFL3ZLC5VOvR5HupOgHEMByzgiZ0iLpPW0rAb1i57Ytw?e=tocgyq).
+2. Download the processed annotation file [cityscapes_anno.tar.gz](https://drive.google.com/file/d/1hj1um8EE8SuJQhEWvmI-d8rkJe-AEVpi/view?usp=sharing).
 
 3. Organize the dataset as the following structure:
     ```
