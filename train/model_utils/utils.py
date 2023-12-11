@@ -60,7 +60,12 @@ def load_network(net, model_dir, strict=True, map_location=None):
 
     net_weight = net.state_dict()
     for key in net_weight.keys():
-        net_weight.update({key: pretrained_model[key]})
+        if key not in pretrained_model.keys():
+            key_ = key.replace('conv_offset', 'conv_offset_mask')
+        else:
+            key_ = key
+        net_weight.update({key: pretrained_model[key_]})
+        #net_weight.update({key: pretrained_model[key]})
 
     net.load_state_dict(net_weight, strict=strict)
     return epoch
